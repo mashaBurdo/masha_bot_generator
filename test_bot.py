@@ -78,9 +78,9 @@ def send_text(message):
     elif message.text.lower() == 'помоги решить':
         bot.send_message(message.chat.id, random.choice(decide))
     elif message.text.lower() == 'случайное словосочетание':
-        bot.send_message(message.chat.id, word_combination())
+        bot.send_message(message.chat.id, word_combination().capitalize())
     elif message.text.lower() == 'голландская игра':
-        bot.send_message(message.chat.id, holland_combination())
+        bot.send_message(message.chat.id, holland_combination().capitalize())
 
 
 bot.polling()
