@@ -1,2 +1,2 @@
-web: python test_bot.py
-heroku ps:scale web=1
+worker: python test_bot.py
+heroku ps:scale worker=1
