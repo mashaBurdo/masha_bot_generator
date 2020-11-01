@@ -56,7 +56,7 @@ bot = telebot.TeleBot('1448303289:AAEg0b7k-j3i-4G47J6hqh8q44v16cKxwEY')
 keybord1 = telebot.types.ReplyKeyboardMarkup(True)
 keybord1.row('Помоги решить', 'Случайное словосочетание')
 keybord1.row('Голландская игра')
-keybord1.row('Дата', 'Время', 'День недели')
+keybord1.row('Дата', 'День недели')
 keybord1.row('Привет', 'Пока')
 
 @bot.message_handler(commands=['start'])
@@ -71,8 +71,6 @@ def send_text(message):
         bot.send_message(message.chat.id, 'И тебе пока!')
     elif message.text.lower() == 'дата':
         bot.send_message(message.chat.id, datetime.datetime.today().strftime('%d.%m.%Y'))
-    elif message.text.lower() == 'время':
-        bot.send_message(message.chat.id, datetime.datetime.today().strftime('%H:%M:%S'))
     elif message.text.lower() == 'день недели':
         bot.send_message(message.chat.id, datetime.datetime.today().strftime('%A'))
     elif message.text.lower() == 'помоги решить':
