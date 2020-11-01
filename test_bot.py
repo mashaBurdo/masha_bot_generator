@@ -54,7 +54,8 @@ decide = ['Да', 'Нет', 'Наверное', 'Духи говорят да', 
 bot = telebot.TeleBot('1448303289:AAEg0b7k-j3i-4G47J6hqh8q44v16cKxwEY')
 
 keybord1 = telebot.types.ReplyKeyboardMarkup(True)
-keybord1.row('Голландская игра', 'Помоги решить', 'Как я выгляжу?')
+keybord1.row('Помоги решить', 'Случайное словосочетание')
+keybord1.row('Голландская игра')
 keybord1.row('Дата', 'Время', 'День недели')
 keybord1.row('Привет', 'Пока')
 
@@ -76,8 +77,8 @@ def send_text(message):
         bot.send_message(message.chat.id, datetime.datetime.today().strftime('%A'))
     elif message.text.lower() == 'помоги решить':
         bot.send_message(message.chat.id, random.choice(decide))
-    elif message.text.lower() == 'как я выгляжу?':
-        bot.send_message(message.chat.id, 'Как '+word_combination())
+    elif message.text.lower() == 'случайное словосочетание':
+        bot.send_message(message.chat.id, word_combination())
     elif message.text.lower() == 'голландская игра':
         bot.send_message(message.chat.id, holland_combination())
 
