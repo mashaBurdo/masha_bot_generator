@@ -54,9 +54,8 @@ decide = ['Да', 'Нет', 'Наверное', 'Духи говорят да', 
 bot = telebot.TeleBot('1448303289:AAEg0b7k-j3i-4G47J6hqh8q44v16cKxwEY')
 
 keybord1 = telebot.types.ReplyKeyboardMarkup(True)
-keybord1.row('Помоги решить', 'Как я выгляжу?')
+keybord1.row('Голландская игра', 'Помоги решить', 'Как я выгляжу?')
 keybord1.row('Дата', 'Время', 'День недели')
-keybord1.row('Голландская игра', 'test')
 keybord1.row('Привет', 'Пока')
 
 @bot.message_handler(commands=['start'])
