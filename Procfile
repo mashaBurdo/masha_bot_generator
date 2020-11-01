@@ -1,2 +1,2 @@
-worker: python t_bot.py
+worker: python test_bot.py
 heroku ps:scale web=1
