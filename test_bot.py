@@ -4,28 +4,25 @@ import sqlite3
 import random
 import markovify
 import numpy
+import re
 
 def parser(file): # Даем парсеру файл и он возвращиет список без новых строк и пробелов. Знаки препинания сохранены.
     main_line = []
     with open(file, 'r', encoding='utf8') as text:
         for line in text:
-            line_list = line.replace('\n', ' ').split(' ')
-            '''for el in line_list:
-                if el != '':
-                    main_line.append(el)'''
-            main_line.append(line_list)
-            random.shuffle(main_line)
-    result = []
-    for line in main_line:
-        temp = result.extend(line)
-    return result
+            line_list = line.replace('\n', ' ').replace(':', '').replace('(', '').replace(')', '').replace(';', '').split(' ')
+            no_list = ['', '.', ',', 'т.', 'е.', 'т.е.', 'ч.', 'г.']
+            for el in line_list:
+                if el not in no_list and not el.isupper() and not re.match('\d', el):
+                    main_line.append(el)
+    return main_line
 
-def generate_sent():
-    parsed_text = parser('text.txt')
+def generate_sent(file):
+    parsed_text = parser(file)
     line = ' '.join(parsed_text)
 
     text_model = markovify.Text(line)
-    return text_model.make_short_sentence(380)
+    return text_model.make_short_sentence(380).capitalize()
 
 def word_combination():
     conn = sqlite3.connect('words.db')
@@ -64,8 +61,8 @@ bot = telebot.TeleBot('1448303289:AAEg0b7k-j3i-4G47J6hqh8q44v16cKxwEY')
 
 keybord1 = telebot.types.ReplyKeyboardMarkup(True)
 keybord1.row('Помоги решить', 'Брось кубик')
-keybord1.row('Случайное словосочетание')
-keybord1.row('Генератор текста')
+keybord1.row('Cловосочетание', 'Стоматология')
+keybord1.row('Пословица', 'Отношения')
 keybord1.row('О создателе', 'О боте')
 
 @bot.message_handler(commands=['start'])
@@ -78,11 +75,15 @@ def send_text(message):
         bot.send_message(message.chat.id, bot_description)
     elif message.text.lower() == 'о создателе':
         bot.send_message(message.chat.id, dev_description)
-    elif message.text.lower() == 'генератор текста':
-        bot.send_message(message.chat.id, generate_sent())
+    elif message.text.lower() == 'отношения':
+        bot.send_message(message.chat.id, generate_sent('sex.txt'))
+    elif message.text.lower() == 'пословица':
+        bot.send_message(message.chat.id, generate_sent('dal.txt'))
+    elif message.text.lower() == 'стоматология':
+        bot.send_message(message.chat.id, generate_sent('stom.txt'))
     elif message.text.lower() == 'помоги решить':
         bot.send_message(message.chat.id, random.choice(decide))
-    elif message.text.lower() == 'случайное словосочетание':
+    elif message.text.lower() == 'словосочетание':
         bot.send_message(message.chat.id, word_combination().capitalize())
     elif message.text.lower() == 'брось кубик':
         bot.send_message(message.chat.id, random.randint(1, 6))
