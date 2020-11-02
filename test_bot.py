@@ -58,7 +58,7 @@ def send_text(message):
     elif message.text.lower() == 'случайное словосочетание':
         bot.send_message(message.chat.id, word_combination().capitalize())
     elif message.text.lower() == 'брось кубик':
-        bot.send_message(message.chat.id, random.randint(0, 6))
+        bot.send_message(message.chat.id, random.randint(1, 6))
     else:
         bot.send_message(message.chat.id, 'Я вас не понимаю:(')
 
