@@ -50,6 +50,10 @@ def holland_combination():
 
 
 decide = ['Да', 'Нет', 'Наверное', 'Духи говорят да', 'Звезды говорят нет', 'Да, если сегодня четное число', 'Нет, если сегоня дождь', '42', 'Ты разольешь кофе', 'Не могу сказать', 'Неопределенно', 'Мой код говно']
+bot_description = '''Я бот'''
+dev_description = '''Я разраб'''
+
+
 
 bot = telebot.TeleBot('1448303289:AAEg0b7k-j3i-4G47J6hqh8q44v16cKxwEY')
 
@@ -57,7 +61,7 @@ keybord1 = telebot.types.ReplyKeyboardMarkup(True)
 keybord1.row('Помоги решить', 'Голландская игра')
 keybord1.row('Случайное словосочетание')
 keybord1.row('Дата', 'День недели')
-keybord1.row('Привет', 'Пока')
+keybord1.row('О создателе', 'О боте')
 
 @bot.message_handler(commands=['start'])
 def start_message(message):
@@ -65,10 +69,10 @@ def start_message(message):
 
 @bot.message_handler(content_types=['text'])
 def send_text(message):
-    if message.text.lower() == 'привет':
-        bot.send_message(message.chat.id, 'И тебе привет!')
-    elif message.text.lower() == 'пока':
-        bot.send_message(message.chat.id, 'И тебе пока!')
+    if message.text.lower() == 'о боте':
+        bot.send_message(message.chat.id, bot_description)
+    elif message.text.lower() == 'о создателе':
+        bot.send_message(message.chat.id, dev_description)
     elif message.text.lower() == 'дата':
         bot.send_message(message.chat.id, datetime.datetime.today().strftime('%d.%m.%Y'))
     elif message.text.lower() == 'день недели':
