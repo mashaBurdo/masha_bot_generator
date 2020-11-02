@@ -78,7 +78,7 @@ def send_text(message):
     elif message.text.lower() == 'за жизнь':
         bot.send_message(message.chat.id, generate_sent('sex.txt'))
     elif message.text.lower() == 'пословица':
-        bot.send_message(message.chat.id, generate_sent('dal.txt'))
+        bot.send_message(message.chat.id, generate_sent('mat.txt'))
     elif message.text.lower() == 'стоматология':
         bot.send_message(message.chat.id, generate_sent('stom.txt'))
     elif message.text.lower() == 'помоги решить':
