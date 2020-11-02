@@ -60,7 +60,7 @@ dev_description = '''Я Мария Бурдо, студентка стомфак
 bot = telebot.TeleBot('1448303289:AAEg0b7k-j3i-4G47J6hqh8q44v16cKxwEY')
 
 keybord1 = telebot.types.ReplyKeyboardMarkup(True)
-keybord1.row('Пословица', 'Отношения')
+keybord1.row('Пословица', 'За жизнь')
 keybord1.row('Словосочетание', 'Стоматология')
 keybord1.row('Помоги решить', 'Брось кубик')
 keybord1.row('О создателе', 'О боте')
@@ -75,7 +75,7 @@ def send_text(message):
         bot.send_message(message.chat.id, bot_description)
     elif message.text.lower() == 'о создателе':
         bot.send_message(message.chat.id, dev_description)
-    elif message.text.lower() == 'отношения':
+    elif message.text.lower() == 'за жизнь':
         bot.send_message(message.chat.id, generate_sent('sex.txt'))
     elif message.text.lower() == 'пословица':
         bot.send_message(message.chat.id, generate_sent('dal.txt'))
