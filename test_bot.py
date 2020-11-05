@@ -69,6 +69,10 @@ keybord1.row('О создателе', 'О боте')
 def start_message(message):
     bot.send_message(message.chat.id, 'Привет, давай начинать!', reply_markup=keybord1)
 
+@bot.message_handler(commands=['folklore'])
+def start_message(message):
+    bot.send_message(message.chat.id, generate_sent('mat.txt'))
+
 @bot.message_handler(content_types=['text'])
 def send_text(message):
     if message.text.lower() == 'о боте':
@@ -76,9 +80,9 @@ def send_text(message):
     elif message.text.lower() == 'о создателе':
         bot.send_message(message.chat.id, dev_description)
     elif message.text.lower() == 'за жизнь':
-        bot.send_message(message.chat.id, generate_sent('sex.txt'))
+        bot.send_message(message.chat.id, generate_sent('life.txt'))
     elif message.text.lower() == 'пословица':
-        bot.send_message(message.chat.id, generate_sent('mat.txt'))
+        bot.send_message(message.chat.id, generate_sent('dal.txt'))
     elif message.text.lower() == 'стоматология':
         bot.send_message(message.chat.id, generate_sent('stom.txt'))
     elif message.text.lower() == 'помоги решить':
