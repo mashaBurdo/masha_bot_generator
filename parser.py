@@ -1,6 +1,5 @@
 import markovify
 import random
-import numpy
 import re
 
 def parser(file): # Даем парсеру файл и он возвращиет список без новых строк и пробелов. Знаки препинания сохранены.

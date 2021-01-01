@@ -53,14 +53,14 @@ def word_combination():
 
 decide = ['Да', 'Нет', 'Наверное', 'Духи говорят да', 'Звезды говорят нет', 'Да, если сегодня четное число', 'Нет, если сегоня дождь', '42', 'Ты разольешь кофе', 'Не могу сказать', 'Неопределенно']
 bot_description = '''Бот является тестовой площадкой для моих проектов. На данный момент он представляет из себя генератор случайных словосочетаний и рандомайзер. Также есть функции генератора текста при помощий марковских цепей. Можете написать мне свой отзыв или идею для проекта. Мои контакты можно найти в разделе "О создателе".'''
-dev_description = '''Я Мария Бурдо, студентка стомфака БГМУ и преподаватель Python, HTML, CSS, JS в школе программирования Itgenio. Контакты для связи: \nhttps://t.me/Mariya_Brd \nhttps://vk.com/m.burdo'''
+dev_description = '''Я Мария Бурдо, студентка стомфака БГМУ и преподаватель Python, HTML, CSS, JS, Photoshop в школе программирования Itgenio. Контакты для связи: \nhttps://t.me/Mariya_Brd \nhttps://vk.com/m.burdo'''
 
 
 
 bot = telebot.TeleBot('1448303289:AAEg0b7k-j3i-4G47J6hqh8q44v16cKxwEY')
 
 keybord1 = telebot.types.ReplyKeyboardMarkup(True)
-keybord1.row('Пословица', 'За жизнь')
+keybord1.row('Пословица', 'О природе')
 keybord1.row('Словосочетание', 'Стоматология')
 keybord1.row('Помоги решить', 'Брось кубик')
 keybord1.row('О создателе', 'О боте')
@@ -69,9 +69,6 @@ keybord1.row('О создателе', 'О боте')
 def start_message(message):
     bot.send_message(message.chat.id, 'Привет, давай начинать!', reply_markup=keybord1)
 
-@bot.message_handler(commands=['folklore'])
-def start_message(message):
-    bot.send_message(message.chat.id, generate_sent('mat.txt'))
 
 @bot.message_handler(content_types=['text'])
 def send_text(message):
@@ -79,10 +76,10 @@ def send_text(message):
         bot.send_message(message.chat.id, bot_description)
     elif message.text.lower() == 'о создателе':
         bot.send_message(message.chat.id, dev_description)
-    elif message.text.lower() == 'за жизнь':
-        bot.send_message(message.chat.id, generate_sent('life.txt'))
+    elif message.text.lower() == 'о природе':
+        bot.send_message(message.chat.id, generate_sent('zoo.txt'))
     elif message.text.lower() == 'пословица':
-        bot.send_message(message.chat.id, generate_sent('dal.txt'))
+        bot.send_message(message.chat.id, generate_sent('mat.txt'))
     elif message.text.lower() == 'стоматология':
         bot.send_message(message.chat.id, generate_sent('stom.txt'))
     elif message.text.lower() == 'помоги решить':
